@@ -18,7 +18,7 @@ describe("Steam Store test", function () {
         }
         fs.mkdirSync(downloadsPath, {recursive:true});
 
-        browser = await chromium.launch({headless: false});
+        browser = await chromium.launch({headless: true});
 
         context = await browser.newContext({
             acceptDownloads:true,
@@ -61,7 +61,7 @@ describe("Steam Store test", function () {
         expect(currentPageUrl, `Error returning to steam main page, this is the actual url ${currentPageUrl}`).to.include(basePageUrl);
     });
 
-    it.only("Download steam installer and verify downloaded file", async () => {
+    it("Download steam installer and verify downloaded file", async () => {
         const btnInstallSteamInHeader = await page.locator("//a[contains(@class,'header_installsteam_btn')]");
         const btnInstallProgram = await page.locator("//a[@class='about_install_steam_link']").first();
         const lblGamerStats = await page.locator("//div[@class='online_stats']");
